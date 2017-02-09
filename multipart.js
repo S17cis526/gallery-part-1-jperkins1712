@@ -25,6 +25,13 @@ function multipart(buffer, boundary, next) {
   req.on('data', function(chunk) {
     chunks.push(chunk);
   });
+
+  req.on('end',  function() {
+    var boundary = req.headers["ContentType"];
+    var buffer = Buffer.concat(chunks);
+    req.body = processBody(buffer, boundary);
+    next(req, res);
+  });
 }
 
 /**
