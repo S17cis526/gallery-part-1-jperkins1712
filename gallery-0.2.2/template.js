@@ -14,7 +14,9 @@ var templates = {};
   * @param {string} directory - the directory to load
   */
 function loadDir(directory) {
-  var dir = fs.readdir(directory)
+  console.log(directory);
+  var dir = fs.readdir(directory);
+  console.log(dir);
   dir.forEach(function(file) {
     var path = directory + '/' + file;
     var stats = fs.statSync(path);
